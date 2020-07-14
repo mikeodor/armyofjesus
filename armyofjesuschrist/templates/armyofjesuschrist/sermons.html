@@ -1,0 +1,117 @@
+{% extends "armyofjesuschrist/base.html" %}
+{% load static %}
+{% block title %}
+<title>ArmyOfJesusChrist | sermon</title>
+{% endblock title %}
+{% block main %}
+
+
+    <section class="sermons-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center mx-auto">
+                        <img src="{% static 'armyofjesuschrist/img/core-img/cross.png' %}" alt="">
+                        <h3>The Sermons</h3>
+                       
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-12 col-lg-6 mb-100">
+                    <!-- Single Sermons Area -->
+                    {% for sermon in sermon %}
+                    <div class="single-sermons style-2">
+                        <div class="sermons-content">
+                            <!-- Sermons Thumbnail -->
+                            <div class="sermons-thumbnail bg-img" style="background-image: url({{sermon.image.url}});"></div>
+                            <!-- Sermons Content -->
+                            <div class="sermons-text">
+                                <a href="{% url 'detail' sermon.id %} ">
+                                    <h6>{{sermon.title}}</h6>
+                                </a>
+                                <p>By {{sermon.by}}</p>
+                                <p class="date">{{sermon.date|date:'d M, Y'}}</p>
+                                <p>{{sermon.word|safe|truncatewords:"20"|linebreaks}}</p>
+                                <div class="see-more-btn">
+                                    <a href="{% url 'detail' sermon.id %}" class="btn btn-info btn-sm dis">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Audio Player -->
+                   
+                    </div>
+                    <hr>
+                    {% endfor %}
+                  <!-- Pagination Area -->
+                  <div class="pagination-area">
+
+                    {% if is_paginated %}
+
+                    {% if page_obj.has_previous %}
+                    <a class='btn btn-default mb-4' href="?page=1">first</a>
+                    <a class='btn btn-default mb-4' href="?page={{page_obj.previous_page_number}}">previous</a>
+                    {% endif %}
+
+
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <a class='btn btn-info btn-sm mb-4 ' href="? page={{num}}">{{num}}</a>
+
+                    {%elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class='btn btn-default btn-sm mb-4 ' href="?page={{num}}">{{num}}</a>
+                    {% endif %}
+
+                    {% endfor %}
+
+
+
+                    {% if page_obj.has_next %}
+                    <a class='btn btn-default mb-4' href="?page={{page_obj.next_page_number}}">next</a>
+                    <a class='btn btn-default mb-4' href="?page={{page_obj.paginator.num_pages}}">Last</a>
+                    {% endif %}
+
+
+                    {% endif %}
+
+                </div>
+                </div>
+
+                <div class="col-12 col-lg-6 mb-100">
+                    <!-- Single Sermons Area -->
+                    {% for sermon in sermonside %}
+                    <div class="single-sermons">
+                        <div class="sermons-content d-flex align-items-center">
+                            <!-- Sermons Thumbnail -->
+                            <div class="sermons-thumbnail bg-img" style="background-image: url({{sermon.image.url}});"></div>
+                            <!-- Sermons Content -->
+                            <div class="sermons-text">
+                                <a href="{% url 'detail' sermon.id %} ">
+                                    <h6>{{sermon.title}}</h6>
+                                </a>
+                                <p>By {{sermon.by}}</p>
+                                <p class="date">{{sermon.date|date:'d M, Y'}}</p>
+                            </div>
+                        </div>
+                        <!-- Audio Player -->
+                    
+                     
+                    </div>
+                    <hr>
+                    {% endfor %}
+
+           
+              
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Sermons Area Start ##### -->
+
+    <!-- Single Sermons Area -->
+   
+
+
+    {% endblock main %}

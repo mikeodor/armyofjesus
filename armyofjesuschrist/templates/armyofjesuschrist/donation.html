@@ -1,0 +1,109 @@
+{% extends "armyofjesuschrist/base.html" %}
+{% load static %}
+{% block title %}
+<title>ArmyOfJesusChrist | donation</title>
+{% endblock title %}
+{% block main %}
+<div class="container">
+  <form class="needs-validation" novalidate method="POST" style="margin: 30px;">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom01">First name</label>
+        <input type="text" class="form-control" id="validationCustom01" placeholder="First name" name="firstname" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please Enter Your Name.
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom02">Last name</label>
+        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" name="lastname" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please Enter Your Last Name.
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustomUsername">Email</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend">@</span>
+          </div>
+          <input type="email" class="form-control" id="validationCustomUsername" placeholder="Email" name="email" aria-describedby="inputGroupPrepend" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please Enter an email.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+  
+      <div class="col-md-3 mb-3">
+        <label for="validationCustom04">State</label>
+        <input type="text" class="form-control" id="validationCustom04" placeholder="State" name="state"required>
+        <div class="invalid-feedback">
+          Please provide a valid state.
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationCustom05">Phone Number</label>
+        <input type="tel" class="form-control" id="validationCustom05" placeholder="Phone Number" name="phonenumber"required maxlength="11" pattern="[0-9]{4}[0-9]{3}[0-9]{4}">
+        <div class="invalid-feedback">
+          Please provide a valid Phone Number. Example: 0701 234 5678
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationCustom05">Amount</label>
+        <input type="number" class="form-control" id="validationCustom05" placeholder="Amount" name="amount"required >
+        <div class="invalid-feedback">
+          Please provide an Amount
+        </div>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+ 
+    </div>
+    <button class="btn btn-primary" type="submit" >Submit</button>
+  </form>
+  
+  <script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+          }
+          form.classList.add('was-validated');
+        }, false);
+        
+      });
+    }, false);
+    
+  })();
+  </script>
+</div>
+
+
+{% endblock main %}

@@ -1,0 +1,262 @@
+{% extends "armyofjesuschrist/base.html" %}
+{% load static %}
+
+{% block main %}
+{% block title %}
+<title>ArmyOfJesusChrist | HOME</title>
+{% endblock title %}
+
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+            {% for slide in slide %}
+
+
+            <div class="single-hero-slide bg-img bg-overlay"
+                style="background-image: url(static/armyofjesuschrist/img/bg-img/crop.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center justify-content-end">
+                        <div class="col-12 col-lg-7">
+                            <!-- Slides Content -->
+                            <div class="hero-slides-content  mt-5" >
+                                <h6 class="date" data-animation="fadeInUp" data-delay="100ms">{{slide.date|date:'M Y'}}
+                                </h6>
+                                <h2 data-animation="fadeInUp" data-delay="500ms">{{slide.title}}</h2>
+                                <h3 data-animation="fadeInUp" data-delay="300ms">{{slide.biblequote}}</h3>
+                                <p data-animation="fadeInUp" data-delay="700ms">{{slide.description}}</p>
+                            </div>
+                            <a href="#" type="button" class="btn btn-primary btn-lg mt-5" data-animation="fadeInUp" data-delay="500ms">sermon</a>
+                            <a href="#" class="btn btn-info btn-lg mt-5 ml-5" data-animation="fadeInUp" data-delay="400ms">sermon</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Event Button -->
+                <div class="next-event-btn" data-animation="bounceInDown" data-delay="900ms">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <a href="#" class="btn faith-btn active">{{slide.date|date:'l'}}&nbsp;{{slide.The_time}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### CTA Area Start ##### -->
+    <!-- <div class="faith-cta-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="cta-text d-flex justify-content-between align-items-center">
+                        <h5>Duis elementum diam eget eros tincidunt, at venenatis nunc tincidunt</h5>
+                        <a href="#" class="btn faith-btn">Visitors Info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- ##### CTA Area End ##### -->
+
+    <!-- ##### About Area Start ##### -->
+    <section class="faith-about-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% for bread in bread%}
+                    <div class="about-content">
+                        <img src="{% static 'armyofjesuschrist/img/core-img/holy-star.png' %}" alt="">
+                        <h2>“{{bread.title}}”</h2>
+                        <h6>{{bread.text}}
+                        </h6>
+                    </div>
+                    {% endfor%}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### About Area End ##### -->
+
+    <!-- ##### Church Activities Area Start ##### -->
+    <section class="church-activities-area section-padding-100-0"  style="background-image:   url(/static/armyofjesuschrist/img/bg-img/01.jpg) !important;  background-repeat: no-repeat !important; background-size: cover;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center mx-auto">
+                        <img src="{% static 'armyofjesuschrist/img/core-img/cross.png' %}" alt="">
+                        <h3 class="mycolor">Church Activities</h3>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <!-- Upcoming Events -->
+                    <div class="upcoming-events mb-100">
+                        <!-- Headline -->
+                        <div class="headline">
+                            <h5 class="mycolor">Upcoming Events</h5>
+                        </div>
+
+                        <!-- Single Upcoming Events -->
+                        {% for events in events  %}
+
+
+                        <div class="single-upcoming-events d-flex align-items-center">
+                            <!-- Events Date & Thumbnail -->
+                            <div class="event-date-thumbnail d-flex align-items-center">
+                                <div class="event-date">
+                                    <h6>{{events.month|date:'d'}} <br> {{events.month|date:'F'}} <br>
+                                        {{events.month|date:'Y'}}</h6>
+                                </div>
+                                <div class="event-thumbnail bg-img"
+                                    style="background-image: url({{events.image.url}});">
+                                </div>
+                            </div>
+                            <!-- Events Content -->
+                            <div class="events-content">
+                                <a href="#">
+                                    <h6>{{events.description}}</h6>
+                                </a>
+                                <p>{{events.time}} @{{events.location}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+<hr>
+                   <!-- Pagination Area -->
+                   <div class="pagination-area">
+
+                    {% if events.has_other_pages %}
+
+                    {% if events.has_previous %}
+                    <a class='btn btn-info mb-4' href="?page=1">first</a>
+                    <a class='btn btn-info mb-4' href="?page={{events.previous_page_number}}">previous</a>
+                    {% endif %}
+
+
+                    {% for num in events.paginator.page_range %}
+                    {% if events.number == num %}
+                    <a class='btn btn-default btn-sm mb-4 ' href="? page={{num}}" style="color: white;">{{num}}</a>
+
+                    {%elif num > events.number|add:'-3' and num < events.number|add:'3' %}
+                    <a class='btn btn-info btn-sm mb-4 ' href="?page={{num}}" >{{num}}</a>
+                    {% endif %}
+
+                    {% endfor %}
+
+
+
+                    {% if events.has_next %}
+                    <a class='btn btn-info mb-4' href="?page={{events.next_page_number}}">next</a>
+                    <a class='btn btn-info mb-4' href="?page={{events.paginator.num_pages}}">Last</a>
+                    {% endif %}
+
+
+                    {% endif %}
+
+                </div>
+<hr>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <!-- Latest Sermons -->
+                    <div class="latest-sermons mb-100">
+                        <div class="headline">
+                            <h5 class="mycolor">Latest Sermons</h5>
+                        </div>
+                        {% for sermon in latestSermon  %}
+                        <div class="single-sermons">
+                            <div class="sermons-content d-flex align-items-center">
+                                <!-- Sermons Thumbnail -->
+                                <div class="sermons-thumbnail bg-img"
+                                    style="background-image: url({{sermon.image.url}})"></div>
+                                <!-- Sermons Content -->
+                                <div class="sermons-text">
+                                    <a href="#">
+                                        <h6>{{sermon.title}}</h6>
+                                    </a>
+                                    <p>By {{sermon.by}}</p>
+                                    <p class="date">{{sermon.date|date:'d M, Y'}}</p>
+
+                                </div>
+                            </div>
+                       
+                          
+                        </div>
+                        {% endfor %}
+                        <div class="all-events-btn">
+                            <a href="{% url 'sermon' %}" class="btn faith-btn active">See More</a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Church Activities Area End ##### -->
+
+    <!-- ##### Donate Area Start ##### -->
+    <section class="donate-our-charities section-padding-100 bg-img bg-overlay"
+        style="background-image: url(static/armyofjesuschrist/img/bg-img/bg-3.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading white text-center mx-auto">
+                        <img src="{% static 'armyofjesuschrist/img/core-img/cross.png' %}" alt="">
+                        <h3>Donate to the Church</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="donate-slides owl-carousel">
+                        
+                        {% for donate in donation %}
+
+                        <!-- Single Donate Slide Area -->
+                        <div class="single-donate-slide" style="height: 340px;">
+                            
+                            <img src="{{donate.image.url}}" alt="" style="height: 340px;">
+                            <!-- Donate Content -->
+                            <div class="donate-content">
+                                <h4>{{donate.For_What|upper}}</h4>
+                                <p>{{donate.brief_description}}</p>
+                            </div>
+                            <!-- Donate Button -->
+                            <div class="donate-btn text-center">
+                                <a href="{% url 'donation' %}" class="btn faith-btn active">Donate</a>
+                            </div>
+                            
+                        </div>
+                        {% endfor %}
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Donate Area End ##### -->
+
+
+    <!-- ##### Blog Area End ##### -->
+    {% for year, month_list in archives %}
+    {{ year }} archives:
+    {% for month, has_link in month_list %}
+    {% if has_link %}<a href="/{{ month.year }}/{{ month.month }}/">{% endif %}
+        {{ month|date:"M" }}
+        {% if has_link %}</a>{% endif %}
+    {% endfor %}
+    {% endfor %}
+
+    {% endblock main %}

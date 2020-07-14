@@ -1,0 +1,97 @@
+{% extends "armyofjesuschrist/base.html" %}
+{% load static %}
+{% block main %}
+ {% block title %}
+   <title>ArmyOfJesusChrist | Ministry</title>
+ {% endblock title %}
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img" style="background-image: url(/static/armyofjesuschrist/img/bg-img/bg-4.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 col-md-6">
+                    <div class="breadcumb-text">
+                        <h5>Join one today</h5>
+                        <h2>Ministries</h2>
+                        <p>Join a ministry today in the house of God.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Ministries Area Start ##### -->
+    <section class="ministries-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center mx-auto">
+                        <img src="{% static 'armyofjesuschrist/img/core-img/cross.png' %}" alt="">
+                        <h3>The Ministry</h3>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Single Ministry Area -->
+                {% for ministry in ministry %}
+                <div class="col-12 col-sm-6 col-lg-4" >
+                    <div class="single-ministry mb-100">
+                        <img src="{{ministry.image.url}} " style="height:300px; width:fit-content" alt="">
+                        <div class="ministry-content">
+                            <h6>{{ministry.Ministry|upper}}</h6>
+                            <p>{{ministry.description}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+           
+              
+
+          
+
+            </div>
+        </div>
+    </section>
+    <!-- ##### Ministries Area End ##### -->
+
+    <!-- ##### Pastors Area Start ##### -->
+    <section class="pastors-area section-padding-100-0 bg-img bg-overlay" style="background-image: url(/static/armyofjesuschrist/img/bg-img/bg-5.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading white text-center mx-auto">
+                        <img src="{% static 'armyofjesuschrist/img/core-img/cross.png' %}" alt="">
+                        <h3>The Pastors</h3>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Single Pastors Area -->
+                {% for pastor in pastor %}
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-pastor-area mb-100">
+                        <img src="{{pastor.image.url}}" style="height:300px; width:300px">
+                        <div class="pastor-content">
+                            <h5>{{pastor.name}}</h5>
+                            <h6>{{pastor.role}}</h6>
+                          
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+               
+            
+            </div>
+
+
+          
+        </div>
+    </section>
+
+
+{% endblock main%}

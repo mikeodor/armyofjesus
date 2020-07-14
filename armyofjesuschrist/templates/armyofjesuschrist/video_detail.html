@@ -1,0 +1,107 @@
+{% extends "armyofjesuschrist/base.html" %}
+{% load static %}
+{% block title %}
+<title>ArmyOfJesusChrist | video</title>
+{% endblock title %}
+{% block main %}
+
+
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb-area bg-img" style="background-image: url(/static/armyofjesuschrist/img/bg-img/bg-8.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 col-md-6">
+                <div class="breadcumb-text">
+                    <h5>Video</h5>
+                    <h4 style="color: white;">{{detailpost.title}}</h4>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<div class="blog-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="single-sermons style-3">
+                    <div class="sermons-content d-flex align-items-center">
+                    
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video height="400px" class="embed-responsive-item"  controls controlsList=" nodownload"  autoplay>
+                                <source src="{{detailpost.video.url}}" type="video/mp4">
+                                <source src="{{detailpost.video.url}}" type="video/ogg">
+                                your browser dosent support this video please upgrade your browser
+                            </video>
+                            
+                        </div>
+                        <!-- Sermons Content -->
+                        <!-- <div class="sermons-text">
+                            <a href="#">
+                                <h6>Weekend Bible Study with believers</h6>
+                            </a>
+                            <p>By Priest Michael Smith</p>
+                            <p class="date">02 April, 2018</p>
+                            <p class="text">Fusce nec ante vitae lacus aliquet vulputate. Donec scelerisque accumsan molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras sed accumsan neque. Ut vulputate, lectus vel aliquam congue,estibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubi risus leo.</p>
+            
+                            <!-- Audio Player -->
+                        
+                        </div>
+                    </div>
+                <div class="faith-blog-posts">
+                    <div class="row">
+
+                      
+                        
+                        
+                    
+
+                       
+
+                    </div>
+                </div>
+
+                <!-- Pagination Area -->
+              
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="faith-blog-sidebar-area">
+
+                    <!-- Widget -->
+                    
+
+                    <!-- Widget -->
+
+
+                    <!-- Widget -->
+                    <div class="blog-widget-area">
+                        <h5>Latest Video</h5>
+
+                        <!-- Single Latest Blog Post -->
+                        {% for post in  post %}
+                          
+                       
+                        <div class="single-latest-blog-post d-flex mb-30">
+                            <div class="latest-blog-post-thumb">
+                                <img src="{% static 'armyofjesuschrist/img/bg-img/ser1.jpg' %}" alt="">
+                            </div>
+                            <div class="latest-blog-post-content">
+                                <a href="{% url 'detailvideo' post.id %}" class="post-title">{{post.title}}</a>
+                                <a href="#" class="post-date">{{post.date_posted}}</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Blog Area End ##### -->
+
+{% endblock main %}

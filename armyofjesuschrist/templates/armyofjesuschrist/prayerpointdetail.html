@@ -1,0 +1,61 @@
+{% extends "armyofjesuschrist/base.html" %}
+{% load static %}
+{% block title %}
+<title>ArmyOfJesusChrist | sermon</title>
+{% endblock title %}
+{% block main %}
+
+
+    <section class="sermons-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center mx-auto">
+                        <img src="{% static 'armyofjesuschrist/img/core-img/cross.png' %}" alt="">
+                        <!-- <h3>{{sermon.title}}</h3> -->
+                       
+                    </div>
+                </div>
+            </div>
+           
+                <h3 class="text-center">{{prayer.title}}</h3>
+        
+            <hr>
+          
+            <p>{{prayer.prayers|safe}}</p>
+           
+
+                <div class="col-12 col-lg-6 mb-100">
+                    <!-- Single Sermons Area -->
+                    <!-- {% for sermon in sermonside %} -->
+                    <div class="single-sermons">
+                        <div class="sermons-content d-flex align-items-center">
+                            <!-- Sermons Thumbnail -->
+                            <div class="sermons-thumbnail bg-img" style="background-image: url(/static/armyofjesuschrist/img/bg-img/ser1.jpg);"></div>
+                            <!-- Sermons Content -->
+                            <div class="sermons-text">
+                                <a href="{% url 'detail' sermon.id %} ">
+                                    <h6>{{sermon.title}}</h6>
+                                </a>
+                                <p>By {{sermon.by}}</p>
+                                <p class="date">{{sermon.date|date:'d M, Y'}}</p>
+                            </div>
+                        </div>
+                        <!-- Audio Player -->
+                  
+                       
+                    </div>
+                    <hr>
+                    <!-- {% endfor %} -->
+
+           
+              
+
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+
+    {% endblock main %}

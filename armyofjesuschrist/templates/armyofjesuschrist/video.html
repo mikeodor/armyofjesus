@@ -1,0 +1,144 @@
+{% extends "armyofjesuschrist/base.html" %}
+{% load static %}
+{% block title %}
+<title>ArmyOfJesusChrist | Video</title>
+{% endblock title %}
+{% block main %}
+
+
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb-area bg-img" style="background-image: url(/static/armyofjesuschrist/img/bg-img/bg-8.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 col-md-6">
+                <div class="breadcumb-text">
+                    <h5>What’s new</h5>
+                    <h2>Videos</h2>
+                    <p>All Videos from Army of jesus christ ministry</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<div class="blog-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="faith-blog-posts">
+                    <div class="row">
+
+                        <!-- Single Blog Area -->
+                        {% for post in post  %}
+                       <a href="{% url 'detailvideo' post.id %}"> <div class="col-12 col-lg-6">
+                            <div class="single-blog-are mb-100">
+                                <div class="blog-thumbnail" > 
+                                    <video width='350px' height="200px" class="embed-responsive-item" poster="{%static 'armyofjesuschrist/img/core-img/poster2.jpg' %}" preload="none" controlsList=" nodownload" controls>
+                                        <source src="{{post.video.url}}" type="video/mp4">
+                                    
+                                    </video>
+                                    <span  class="blog-title">{{post.title|upper}}</span><br>
+                                    <a href="#" class="btn btn-info btn-sm" style="cursor:none">posted on {{post.date_posted|date:'d M, Y'}}</a>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        </a>
+                        {% endfor %}
+
+                       
+
+                    </div>
+                </div>
+
+                <!-- Pagination Area -->
+                <div class="pagination-area">
+
+                    {% if is_paginated %}
+
+                    {% if page_obj.has_previous %}
+                    <a class='btn btn-default mb-4' href="?page=1">first</a>
+                    <a class='btn btn-default mb-4' href="?page={{page_obj.previous_page_number}}">previous</a>
+                    {% endif %}
+
+
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <a class='btn btn-info btn-sm mb-4 ' href="? page={{num}}">{{num}}</a>
+
+                    {%elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class='btn btn-default btn-sm mb-4 ' href="?page={{num}}">{{num}}</a>
+                    {% endif %}
+
+                    {% endfor %}
+
+
+
+                    {% if page_obj.has_next %}
+                    <a class='btn btn-default mb-4' href="?page={{page_obj.next_page_number}}">next</a>
+                    <a class='btn btn-default mb-4' href="?page={{page_obj.paginator.num_pages}}">Last</a>
+                    {% endif %}
+
+
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="faith-blog-sidebar-area">
+
+                    <!-- Widget -->
+                    <div class="blog-widget-area">
+                        <h5>Archives</h5>
+                        <ul>
+                            <!-- {% for post in post %}
+                                <li><a href="#">{{post.date_posted|date:'M Y'}}</a></li>
+                                {% endfor %} -->
+                            {% for article in object_list %}
+                            <li><a href="{% url 'detailvideo' article.id %}">{{ article.date_posted|date:"F j, Y" }}: {{ article.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+
+                        <p>
+                            {% if previous_month %}
+                            Previous Month: {{ previous_month|date:"F Y" }}
+                            {% endif %}
+                            {% if next_month %}
+                            Next Month: {{ next_month|date:"F Y" }}
+                            {% endif %}
+                        </p>
+
+                        </ul>
+                    </div>
+
+                    <!-- Widget -->
+
+
+                    <!-- Widget -->
+                    <div class="blog-widget-area">
+                        <h5>Latest Posts</h5>
+
+                        <!-- Single Latest Blog Post -->
+                        <div class="single-latest-blog-post d-flex mb-30">
+                            <div class="latest-blog-post-thumb">
+                                <img src="img/bg-img/ser1.jpg" alt="">
+                            </div>
+                            <div class="latest-blog-post-content">
+                                <a href="#" class="post-title">Bible studies for kids</a>
+                                <a href="#" class="post-date">April 04, 2018</a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Blog Area End ##### -->
+
+{% endblock main %}

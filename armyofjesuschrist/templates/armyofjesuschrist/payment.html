@@ -1,0 +1,94 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Payment</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'armyofjesuschrist/img/core-img/favic.ico' %}">
+    <style>
+        .card {
+            margin: 0 auto;
+            /* Added */
+            float: none;
+            /* Added */
+            margin-bottom: 10px;
+            /* Added */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+   
+        <div class="card" style="width: 20rem;">
+        
+            <img  class="card-img-top" style="width:100px ;margin:0 auto" src="{% static 'armyofjesuschrist/img/core-img/army.png' %} " alt="army of jesus christ">
+            <div class="card-body">
+                
+                    <div class="text-center">
+                        <a href="{% url 'home' %}"><button class="btn btn-success mb-3">Go back home</button></a>
+                        <a href="{% url 'donation' %}"><button class="btn btn-info">Go To donation page</button></a>
+                    </div>
+            </div>
+        </div>
+        <body onload="payWithPaystack()">
+            
+            <script src="https://js.paystack.co/v1/inline.js"></script>
+
+            <script type="text/javascript">
+                window.onload = function () {
+                    payWithPaystack();
+                };
+                function payWithPaystack() {
+                    var handler = PaystackPop.setup({
+                        key: 'pk_test_6d4f0bf1c48eddaedefdf66a864416acc8904c9a',
+
+                        email: '{{email}}',
+                        amount: '{{amount}}00',
+                        currency: "NGN",
+                        //ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                        metadata: {
+                            custom_fields: [
+                                {
+                                    display_name: "Mobile Number",
+                                    variable_name: "mobile_number",
+                                    value: "{{phone}}"
+                                }
+                            ]
+                        },
+                        callback: function (response) {
+                            alert('success. transaction ref is ' + response.reference);
+                        },
+                        onClose: function () {
+                            //alert('window closed');
+                        }
+                    });
+                    handler.openIframe();
+                }
+            </script>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

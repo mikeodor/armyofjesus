@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    {% block title %}
+
+    {% endblock title %}
+
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'armyofjesuschrist/img/core-img/favic.ico' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'armyofjesuschrist/style.css' %}">
+
+</head>
+
+<body class="try">
+
+    <!-- ##### Search Wrapper Start ##### -->
+    <!-- <div class="search-wrapper d-flex align-items-center justify-content-center bg-img foo-bg-overlay"
+        style="background-image: url(/static/armyofjesuschrist/img/bg-img/bg-2.jpg);">
+        <div class="close--icon">
+            <i class="fa fa-times"></i>
+        </div>
+        <!-- Logo ->
+        <a href="index.html" class="search-logo"><img src="{% static 'armyofjesuschrist/img/core-img/logo2.png' %}"
+                alt=""></a>
+        <!-- Search Form ->
+  
+
+    </div> -->
+    <!-- ##### Search Wrapper End ##### -->
+
+    <!-- ##### Preloader ##### -->
+    <div id="preloader">
+        <div class="circle">
+            <img src="{% static 'armyofjesuschrist/img/core-img/church.png' %}" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Top Header Area -->
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <div class="top-header-content h-100 d-flex align-items-center justify-content-end">
+                            <!-- Next Events Countdown -->
+                            {% for nextevent in nextevent %}
+
+
+                            <div class="next-events-countdown d-flex align-items-center">
+                                <p>{{nextevent.event}}:</p>
+                                <div class="events-cd"
+                                    data-countdown="{{nextevent.date|date:'Y'}}/{{nextevent.date|date:'m'}}/{{nextevent.date|date:'d'}}">
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="faith-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="faithNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="index.html"><img
+                                src="{% static 'armyofjesuschrist/img/core-img/army.png' %}" style="width: 70px;"
+                                alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li><a href="{% url 'department' %}">Ministries</a></li>
+                                    <li><a href="{% url 'sermon'%}">Sermons</a></li>
+                                    <li><a href="{% url 'prayers'%}">Prayer Points</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                    <li><a href="{% url 'video' %}">Videos</a></li>
+                                </ul>
+
+                                <!-- Search Button -->
+                                <!-- <div class="search-btn">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div> -->
+
+                                <!-- Donate Button -->
+                                <div class="donate-btn">
+                                    <a href="{% url 'donation' %}">Send Donations</a>
+                                </div>
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% block main %}
+
+    {% endblock main %}
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area section-padding-100-0 bg-img foo-bg-overlay"
+            style="background-image: url(/static/armyofjesuschrist/img/bg-img/bg-1.jpg);">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="d-flex flex-wrap mb-100">
+                            <div class="footer-widget">
+                                <div class="widget-title">
+                                    <a href="/"><img style="width:100px"
+                                            src="{% static 'armyofjesuschrist/img/core-img/army.png' %} " alt=""></a>
+                                </div>
+                                <div class="footer-social-info">
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+
+                                    <a href="https://web.facebook.com/Army-of-Jesus-Christ-Ministry-185554291916543"><i
+                                            class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                </div>
+                            </div>
+                            <div class="copywrite-text text-center">
+                                <p style="font-size: 14px;">
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> ARMY OF JESUS CHRIST
+                                    MINISTRY
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                            <!-- <div class="copywrite-text">
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. ->
+                                    Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                    This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                                        href="https://colorlib.com" target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. ->
+                                </p>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget mb-100">
+                            <div class="widget-title">
+                                <h6>Contact Us</h6>
+                            </div>
+
+                            <!-- Single Contact Area -->
+                            <div class="single-contact-area mb-30">
+                                <p>Address:</p>
+                                {% for location in location %}
+                                <span>{{location.address}} <br></span>
+                                {% endfor %}
+
+                            </div>
+
+                            <!-- Single Contact Area -->
+                            <div class="single-contact-area mb-30">
+                                <p>Phone:</p>
+                                {% for phone in phone %}
+                                <span>{{phone.phone_number}}<br></span>
+                                {% endfor %}
+
+                            </div>
+
+                            <!-- Single Contact Area -->
+                            <div class="single-contact-area mb-30">
+                                <p>Email:</p>
+                                {% for email in email %}
+                                <span>{{email.email}}<br></span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="footer-widget mb-100">
+                            <div class="widget-title">
+                                <h6>Usefull Links</h6>
+                            </div>
+                            <nav>
+                                <ul class="useful-links">
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+
+                                    <li><a href="{% url 'sermon' %}">Sermons</a></li>
+                                    <li><a href="{% url 'department' %}">Ministry</a></li>
+
+
+
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'armyofjesuschrist/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'armyofjesuschrist/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'armyofjesuschrist/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'armyofjesuschrist/js/plugins/plugins.js' %}"></script>
+    <script src="{% static 'armyofjesuschrist/js/plugins/audioplayer.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'armyofjesuschrist/js/active.js' %}"></script>
+    <!-- google map -->
+
+
+
+
+
+
+</body>
+
+</html>

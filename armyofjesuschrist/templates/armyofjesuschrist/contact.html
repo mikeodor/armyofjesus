@@ -1,0 +1,100 @@
+{% extends "armyofjesuschrist/base.html" %}
+{% load static %}
+{% block title %}
+<title>ArmyOfJesusChrist | Contact</title>
+{% endblock title %}
+{% block main %}
+
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb-area bg-img" style="background-image: url(/static/armyofjesuschrist/img/bg-img/bg-7.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 col-md-6">
+                <div class="breadcumb-text">
+                    
+                    <h2>Contact Us</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+
+<!-- ##### Contact Area Start ##### -->
+<section class="contact-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-info-area">
+                    <div class="row">
+                        <!-- Contact Information -->
+                        <div class="col-12 col-lg-6">
+                            <div class="contact-information">
+                                <h5>Contact us</h5>
+                                <!-- Single Contact Area -->
+                                <div class="single-contact-area mb-30">
+                                    <p>Address:</p>
+                                    {% for location in location %}
+                                    <span>{{location.address}} <br></span>
+                                    {% endfor %}
+                                </div>
+
+                                <!-- Single Contact Area -->
+                                <div class="single-contact-area mb-30">
+                                    <p>Phone:</p>
+                                    {% for phone in phone %}
+                                    <span>{{phone.phone_number}}<br></span>
+                                    {% endfor %}
+                                </div>
+
+                                <!-- Single Contact Area -->
+                                <div class="single-contact-area mb-30">
+                                    <p>Email:</p>
+                                    {% for email in email %}
+                                    <span>{{email.email}}<br></span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form Area -->
+                        <div class="col-12 col-lg-6">
+                            <div class="contact-form-area">
+                                {% if name %}
+                                <h5>Thank You {{name}}</h5>
+                                <p>Your message was sent sucessfully.</p>
+                                    <form>
+                                    
+                                    <span class="fa fa-check" style="color:green; font-size:200px"></span>
+                                </form>
+                                {%else%}
+                                <h5>Send us a message</h5>
+                                <form action="{% url 'contact' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="text" class="form-control" id="name" placeholder="Name" name='name' required>
+                                    <input type="email" class="form-control" id="email" placeholder="E-mail" name='emailform'>
+                                    <textarea name="message" class="form-control" id="message" cols="30" rows="10"
+                                        placeholder="Message" required></textarea>
+                                    <button class="btn faith-btn" type="submit">Contact Us</button>
+                                </form>
+                                {% endif %}
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Contact Area End ##### -->
+
+<!-- ##### Google Maps ##### -->
+<div class="map-area">
+    <div id="g">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15856.541227490796!2d3.3088038!3d6.5045507!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x85113baf69a0b6a7!2sArmy%20Of%20Jesus%20Christ%20Ministry!5e0!3m2!1sen!2sng!4v1589463122853!5m2!1sen!2sng" width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+</div>
+
+{% endblock main %}
