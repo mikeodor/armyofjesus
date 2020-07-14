@@ -156,12 +156,12 @@ if os.getcwd() == '/app':
     SECURE_SSL_REDIRECT = True
 
 
-EMAIL_BACKEND=config('EMAIL_BACKEND')
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_HOST_USER =config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_PORT =config('EMAIL_PORT', cast=int)
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'michaelodor.bincom@gmail.com' 
+EMAIL_HOST_PASSWORD = 'michael@1234'
+EMAIL_PORT =587
+EMAIL_USE_TLS = True
 
 CKEDITOR_CONFIGS = {
    'default': {
