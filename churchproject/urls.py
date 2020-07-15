@@ -23,7 +23,7 @@ urlpatterns = [
   
     path('pay-with-paystack/', include(('paystack.urls', 'paystack'), namespace='paystack')), 
 
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 if settings.DEBUG:
