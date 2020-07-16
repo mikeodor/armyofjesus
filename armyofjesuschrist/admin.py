@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import UpcomingEvent,NextBigEvent,slide,LatestSermon,donation,address,phone_number,Email,Ministries,pastors,video,CustomerInfo,prayer,breadcrumb
 from django.contrib.auth.models import Group
+from import_export.admin import ImportExportModelAdmin
+
 
 
 
@@ -35,18 +37,40 @@ class bread(admin.ModelAdmin):
 # Register your models.  
 admin.site.register(UpcomingEvent,comingevent)
 admin.site.register(NextBigEvent,bigevent)
-admin.site.register(slide)
-admin.site.register(LatestSermon,LatestSermonadmin)
+# admin.site.register(slide)
+# admin.site.register(LatestSermon,LatestSermonadmin)
 admin.site.register(donation,donationrole)
 admin.site.register(address)
 admin.site.register(phone_number)
 admin.site.register(Email)
-admin.site.register(Ministries)
-admin.site.register(pastors,pastortable)
+# admin.site.register(Ministries)
+# admin.site.register(pastors,pastortable)
 admin.site.register(video,videotable)
 admin.site.register(CustomerInfo,donators)
-admin.site.register(prayer)
-admin.site.register(breadcrumb, bread)
+# admin.site.register(prayer)
+# admin.site.register(breadcrumb, bread)
+
+
+
+
+@admin.register(prayer)
+class prayeradmin(ImportExportModelAdmin):
+    pass
+@admin.register(Ministries)
+class prayeradmin(ImportExportModelAdmin):
+    pass
+@admin.register(pastors)
+class prayeradmin(ImportExportModelAdmin):
+    pass
+@admin.register(breadcrumb)
+class prayeradmin(ImportExportModelAdmin):
+    pass
+@admin.register(LatestSermon)
+class prayeradmin(ImportExportModelAdmin):
+    pass
+@admin.register(slide)
+class prayeradmin(ImportExportModelAdmin):
+    pass
 #unregister models
 admin.site.unregister(Group)
 
