@@ -26,9 +26,9 @@ SECRET_KEY = config['SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['23.92.29.229']
+ALLOWED_HOSTS = ['172.104.6.22']
 
 
 
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'armyofjesuschrist.apps.ArmyofjesuschristConfig',
-    'paystack',
+   
     'ckeditor',
     'import_export', 
 

@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('armyofjesuschrist.urls')),
   
-    path('pay-with-paystack/', include(('paystack.urls', 'paystack'), namespace='paystack')), 
+   # path('pay-with-paystack/', include(('paystack.urls', 'paystack'), namespace='paystack')), 
 
 ]
 
