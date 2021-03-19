@@ -14,7 +14,7 @@ django-flat-theme==1.1.4
 django-heroku==0.3.1
 -e git+https://github.com/gbozee/django-paystack.git@fd2d44767e4c3531add523181eda8001c5ef6170#egg=django_paystack
 django-storages==1.9.1
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 dropbox==10.1.1
 future==0.18.2
 google-api-core==1.17.0
