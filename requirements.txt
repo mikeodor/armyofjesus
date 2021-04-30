@@ -44,7 +44,7 @@ pytz==2019.3
 requests==2.23.0
 requests-async @ https://github.com/encode/requests-async/archive/master.zip
 rfc3986==1.4.0
-rsa==4.0
+rsa==4.7
 six==1.14.0
 soupsieve==2.0
 sqlparse==0.3.1
