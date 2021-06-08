@@ -32,7 +32,7 @@ http3==0.6.7
 hyperframe==5.2.0
 idna==2.9
 Paperboy==1.0.1
-Pillow==7.1.1
+Pillow==8.2.0
 protobuf==3.11.3
 
 pyasn1==0.4.8
